@@ -52,11 +52,6 @@ const userSchema = new mongoose.Schema({
     photoUrl: {
         type: String,
         default: "https://ohmylens.com/wp-content/uploads/2017/06/dummy-profile-pic.png",
-        validate(value){
-            if(!validator.isURL(value)){
-                throw new Error("Invalid URL")
-            }
-        }
 
     },
     about: {

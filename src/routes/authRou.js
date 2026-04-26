@@ -18,9 +18,15 @@ authRouter.post("/signUp", async(req,res) => {
             password:passwordHash
         });
         
-        await user.save();
+        const savedUser = await user.save();
+        const token = await savedUser.getJWT();
+        res.cookie("token", token)
         
-        res.send("New User added successfully");
+        res.json(
+            {
+                message : "New User added successfully", 
+                data: savedUser
+            });
     }
      catch (err){
         res.status(400).send("Cannot Add user :" + err.message);
@@ -44,8 +50,8 @@ authRouter.post("/login", async(req,res) =>{
             const token = await user.getJWT();
 
             //add jwt token to cookie and send the response back to the user
-            res.cookie("token",token);
-            res.send("Logged in Successfully");
+            res.cookie("token", token)
+            res.send(user);
         }
         else{
             throw new Error("Incorrect Password");

@@ -22,6 +22,44 @@ practice.listen(7777 , () => {
 
 
 /*
+import { useEffect } from "react";
+import { BASE_URL } from "../utils/constants";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addConnections } from "../utils/connectionSlice";
+
+const Connections = () => {
+    const dispatch = useDispatch();
+    const connections = useSelector((store) => store.connections);
+    const fetchConnections = async() => {
+        try{
+            const res = await axios.get(BASE_URL + "/user/connections", { 
+                withCredentials: true
+            });
+            dispatch(addConnections(res.data.data));
+        }catch(err) {
+            console.error(err);
+        }
+    };
+    useEffect(() => {
+        fetchConnections();
+    },[]);
+    return(
+    <div className="flex flex-col items-center my-10">
+        <h1 className="font-bold text-2xl mb-4">Connections</h1>
+        {connections.length === 0 ? (
+            <p>No connections yet</p>
+        ):(connections.map((connection) => (
+        <div key={connection._id}>
+          {connection.firstName}
+        </div>
+      ))
+    )}
+  </div>
+);
+}
+
+export default Connections;
 
 //signUp API
 app.post("/signUp", async(req,res) => {
