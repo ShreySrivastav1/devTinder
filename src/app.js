@@ -13,8 +13,8 @@ const userRouter = require("./routes/userRouter");
 const cors = require("cors");
 
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: "http://13.200.233.99",
+    credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
