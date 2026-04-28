@@ -16,6 +16,7 @@ const cors = require("cors");
 
 console.log(process.env.AWS_REGION);
 
+
 app.use(cors({
     origin: "http://13.200.233.99",
     credentials: true
@@ -30,7 +31,7 @@ app.use("/",userRouter);
 
 connectDb().then(() => {
     console.log("Connection Established with Database");
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
     console.log("SERVER IS SUCCESSFULLY RUNNING ON PORT 3000");
 });
 }).catch((err) => {
