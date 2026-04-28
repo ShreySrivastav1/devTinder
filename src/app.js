@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express(); 
 const connectDb = require("./config/database");
@@ -11,6 +12,9 @@ const profileRouter = require("./routes/profileRou");
 const sendConnectionRouter = require("./routes/requestRoutes");
 const userRouter = require("./routes/userRouter");
 const cors = require("cors");
+
+
+console.log(process.env.AWS_REGION);
 
 app.use(cors({
     origin: "http://13.200.233.99",
