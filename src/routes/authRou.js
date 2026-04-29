@@ -2,7 +2,7 @@ const express = require("express");
 const authRouter = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-const sendEmail = require("../utils/sendEmail");
+const sendEmail = require("../utility/sendEmail");
 
 authRouter.post("/signUp", async(req,res) => {
 
