@@ -28,6 +28,8 @@ authRouter.post("/signUp", async(req,res) => {
             console.error("Email failed:", err.message);
         }
 
+        console.log("Email sent:", emailRes.MessageId);
+
 
         res.json(
             {
