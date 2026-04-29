@@ -18,7 +18,10 @@ console.log(process.env.AWS_REGION);
 
 
 app.use(cors({
-    origin: "http://13.200.233.99",
+    origin: [
+        "http://localhost:5173",
+        "http://13.200.233.99"
+    ],
     credentials: true
 }));
 app.use(express.json());
