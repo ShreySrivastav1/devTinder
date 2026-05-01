@@ -12,9 +12,9 @@ const profileRouter = require("./routes/profileRou");
 const sendConnectionRouter = require("./routes/requestRoutes");
 const userRouter = require("./routes/userRouter");
 const cors = require("cors");
-
-
-console.log(process.env.AWS_REGION);
+const http = require("http");
+const initializeSocket = require("./utility/socket");
+const chatRouter = require("./routes/chatRou");
 
 
 app.use(cors({
@@ -31,10 +31,14 @@ app.use("/",authRouter);
 app.use("/",profileRouter);
 app.use("/",sendConnectionRouter);
 app.use("/",userRouter);
+app.use("/",chatRouter);
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 connectDb().then(() => {
     console.log("Connection Established with Database");
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
     console.log("SERVER IS SUCCESSFULLY RUNNING ON PORT 3000");
 });
 }).catch((err) => {

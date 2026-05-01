@@ -2,7 +2,7 @@ const express = require("express");
 const authRouter = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
-const sendEmail = require("../utility/sendEmail");
+
 
 authRouter.post("/signUp", async(req,res) => {
 
@@ -22,14 +22,6 @@ authRouter.post("/signUp", async(req,res) => {
         const token = await savedUser.getJWT();
         res.cookie("token", token)
         
-        try{
-            await sendEmail(emailId,"Welcome to DevTinder 🎉","Thanks for signing up!");
-        }catch(err){
-            console.error("Email failed:", err.message);
-        }
-
-        console.log("Email sent:", emailRes.MessageId);
-
 
         res.json(
             {
