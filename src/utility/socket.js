@@ -10,7 +10,8 @@ const initializeSocket = (server) => {
             origin:[
                 "http://localhost:5173",
                 "http://13.200.233.99"
-            ]
+            ],
+            credentials: true
         }
     });
 
