@@ -20,7 +20,6 @@ Backend APIs for devTinder, a developer-focused social matching platform featuri
 - Login
 - Logout
 - JWT Authentication
-- HttpOnly Cookies
 - Password Hashing with Bcrypt
 
 ### Profile Management
